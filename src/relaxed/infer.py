@@ -79,7 +79,7 @@ def qmu_test(
     # because init_pars[0] is not necessarily the poi init
     init_pars = jnp.asarray(model.config.suggested_init())
     conditional_pars = fixed_poi_fit(
-        data, model, poi_condition=test_poi, init_pars=init_pars[:-1], lr=lr
+        data, model, poi_condition=test_poi, init_pars=init_pars, lr=lr
     )
     if expected_pars is None:
         mle_pars = fit(data, model, init_pars=init_pars, lr=lr)
@@ -115,7 +115,7 @@ def q0_test(
     # because init_pars[0] is not necessarily the poi init
     init_pars = jnp.asarray(model.config.suggested_init())
     conditional_pars = fixed_poi_fit(
-        data, model, poi_condition=test_poi, init_pars=init_pars[:-1], lr=lr
+        data, model, poi_condition=test_poi, init_pars=init_pars, lr=lr
     )
     if expected_pars is None:
         mle_pars = fit(data, model, init_pars=init_pars, lr=lr)
