@@ -23,7 +23,11 @@ def _minimize(
     converted_fn, aux_pars = jax.closure_convert(objective_fn, init_pars, *obj_args)
     # aux_pars seems to be empty? took that line from jax docs example...
     solver = jaxopt.OptaxSolver(
-        fun=converted_fn, opt=optax.adam(lr), implicit_diff=True, maxiter=5000
+        fun=converted_fn,
+        opt=optax.adam(lr),
+        implicit_diff=True,
+        maxiter=100_000,
+        tol=0.001,
     )
     return solver.run(init_pars, *obj_args, *aux_pars)[0]
 
