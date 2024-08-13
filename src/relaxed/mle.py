@@ -26,8 +26,8 @@ def _minimize(
         fun=converted_fn,
         opt=optax.adam(lr),
         implicit_diff=True,
-        maxiter=100_000,
-        tol=0.001,
+        maxiter=100_000, # converges usually around 5000
+        tol=0.001, # stops when this decimal does not change anymore
     )
     return solver.run(init_pars, *obj_args, *aux_pars)[0]
 
